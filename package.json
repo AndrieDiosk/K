@@ -1,0 +1,16 @@
+{
+  "name": "temp-mail-api",
+  "version": "1.0.0",
+  "description": "API for generating random email addresses and retrieving messages",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Sensui",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1"
+  }
+}

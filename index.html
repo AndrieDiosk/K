@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temp Mail API Documentation</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background-color: #1E1E1E;
+      color: #FFFFFF;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #FF9800;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      margin-top: 40px;
+      margin-bottom: 10px;
+      color: #FF9800;
+    }
+
+    code {
+      font-family: 'Roboto Mono', monospace;
+      background-color: #2C2C2C;
+      color: #FFFFFF;
+      padding: 2px 4px;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+
+    pre {
+      background-color: #2C2C2C;
+      color: #FFFFFF;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    pre code {
+      display: block;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.7;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .link {
+      color: #FF9800;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .link:hover {
+      color: #FFB74D;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Temp Mail API Documentation</h1>
+
+    <h2>Base URL</h2>
+    <p><code>https://temp-mail-api.codersensui.repl.co</code></p>
+
+    <h2>Generate Random Email</h2>
+    <p><strong>Endpoint:</strong> <code>/api/gen</code></p>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>Description:</strong> Generates a random email address.</p>
+    <p><strong>Response:</strong></p>
+    <pre><code>{
+  "email": "example@domain.com"
+}</code></pre>
+
+    <h2>Get Messages for Email</h2>
+    <p><strong>Endpoint:</strong> <code>/api/getmessage/:email</code></p>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>Description:</strong> Retrieves messages for a given email address.</p>
+    <p><strong>Parameters:</strong></p>
+    <ul>
+      <li><code>:email</code> (path parameter): The email address to retrieve messages for.</li>
+    </ul>
+    <p><strong>Response:</strong></p>
+    <pre><code>{
+  "messages": [
+    {
+      "sender": "sender@example.com",
+      "subject": "Example Subject",
+      "message": "This is an example message."
+    },
+    {
+      "sender": "another.sender@example.com",
+      "subject": "Another Subject",
+      "message": "This is another example message."
+    }
+  ]
+}</code></pre>
+
+    <footer>
+      <p>API Documentation - Created by <a class="link" href="https://www.facebook.com/100017375410153">Sensui</a></p>
+    </footer>
+  </div>
+</body>
+</html>
