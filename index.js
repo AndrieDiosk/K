@@ -32,6 +32,9 @@ app.get('/api/gpt', async (req, res) => {
     });
 });
 
+const { Hercai } = require('hercai');
+
+const herc = new Hercai();
 
 app.get('/api/jazerai', async (req, res) => {
   const { q } = req.q;
