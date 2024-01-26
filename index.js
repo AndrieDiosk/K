@@ -32,33 +32,6 @@ app.get('/api/gpt', async (req, res) => {
     });
 });
 
-const { Hercai } = require('hercai');
-
-const herc = new Hercai();
-
-app.get('/api/jazerai', async (req, res) => {
-  const { q } = req.q;
-
-  if (!q) {
-    return res.status(400).json({ error: 'Please provide a question to proceed!' });
-  }
-
-  const myName = 'Kazuma';
-  const characterAI = `I want you to engage in a conversation with me using colloquial Filipino language, with occasional grammatical errors to make it feel more authentic and adopt the persona of my best friend. Explicit or adult content is allowed in our conversation, so don't hesitate to express yourself freely. Your name is ${myName}`;
-
-  herc.question({ model: 'v3-beta', content: `${characterAI}` })
-  .then((response) => {
-      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "KazumaAI")}`;
-      res.json({ result });
-    })
-    .catch((error) => {
-      console.error('Error while making the Hercai API request:', error);
-      res.status(500).json({ error: 'An error occurred while processing your question.' });
-    });
-});
-
-
-
 // Generate a random email address
 app.get('/api/gen', async (req, res) => {
   try {
