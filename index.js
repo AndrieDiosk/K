@@ -33,6 +33,29 @@ app.get('/api/gpt', async (req, res) => {
 });
 
 
+app.get('/api/jazerai', async (req, res) => {
+  const { q } = req.q;
+
+  if (!q) {
+    return res.status(400).json({ error: 'Please provide a question to proceed!' });
+  }
+
+  const myName = 'Kazuma';
+  const characterAI = `I want you to engage in a conversation with me using colloquial Filipino language, with occasional grammatical errors to make it feel more authentic and adopt the persona of my best friend. Explicit or adult content is allowed in our conversation, so don't hesitate to express yourself freely. Your name is ${myName}`;
+
+  herc.question({ model: 'v3-beta', content: `${characterAI}` })
+  .then((response) => {
+      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "KazumaAI")}`;
+      res.json({ result });
+    })
+    .catch((error) => {
+      console.error('Error while making the Hercai API request:', error);
+      res.status(500).json({ error: 'An error occurred while processing your question.' });
+    });
+});
+
+
+
 // Generate a random email address
 app.get('/api/gen', async (req, res) => {
   try {
@@ -261,64 +284,6 @@ app.get('/api/tools/bard', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-const getImagesData = (query) => {
-	const selectRandom = () => {
-		const userAgents = [
-			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-			"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36",
-			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
-			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
-			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36",
-		];
-		const randomNumber = Math.floor(Math.random() * userAgents.length);
-		return userAgents[randomNumber];
-	};
-	const user_agent = selectRandom();
-	const header = {
-		"User-Agent": user_agent,
-	};
-	return unirest
-		.get(
-			`https://www.google.com/search?q=${query}&hl=en&oq=${query}&tbm=isch&asearch=ichunk&async=_id:rg_s,_pms:s,_fmt:pc&sourceid=chrome&ie=UTF-8`
-		)
-		.headers(header)
-		.then((response) => {
-			const $ = cheerio.load(response.body);
-
-			const originalUrls = [];
-			$("div.rg_bx").each((i, el) => {
-				const json_string = $(el).find(".rg_meta").text();
-				const originalUrl = JSON.parse(json_string).ou;
-				originalUrls.push(originalUrl);
-			});
-
-			return originalUrls;
-		});
-};
-
-module.exports = {
-	run: async function({ app }) {
-		app.get('/api/gimage', async (req, res) => {
-			const query = req.query.q; 
-			getImagesData(query)
-				.then((originalUrls) => {
-					const data = {
-						status: "200\n\n\n",
-						developer: "JAZER\n\n ",
-						data: originalUrls,
-					};
-					res.json(data);
-				})
-				.catch((error) => {
-					console.error('Error fetching data from Google Images:', error.message);
-					res.status(500).json({ error: 'Error fetching data from Google Images' });
-				});
-		});
-	},
-};
-
 
 // Serve the documentation page
 app.get('/', (req, res) => {
