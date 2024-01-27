@@ -88,6 +88,28 @@ app.get('/api/getmessage/:email', async (req, res) => {
   }
 });
 
+app.get('/api/ytdl', async (req, res) => {
+  try {
+    const { url } = req.query;
+
+    if (!url || !ytdl.validateURL(url)) {
+      return res.status(400).json({ error: 'Invalid YouTube URL' });
+    }
+
+    const info = await ytdl.getInfo(url);
+    const videoFormat = ytdl.chooseFormat(info.formats, { quality: 'lowest' });
+
+    if (!videoFormat) {
+      return res.status(400).json({ error: 'No video format available for the provided URL' });
+    }
+
+    res.redirect(videoFormat.url);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
 app.get("/v2/tiktok", async (req, res) => {
 			try {
 				const url = req.query.url;
