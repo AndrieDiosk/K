@@ -74,6 +74,7 @@ app.get('/api/getmessage/:email', async (req, res) => {
       const formattedMessage = {
         sender: message.from,
         subject: message.subject,
+	date: message.date,
         message: plainTextMessage
       };
 
