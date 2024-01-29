@@ -88,6 +88,29 @@ app.get('/api/getmessage/:email', async (req, res) => {
   }
 });
 
+app.get('/api/fbdl', async (req, res) => {
+  const videoUrl = req.query.url; // Get the URL parameter from the request
+
+  const options = {
+    method: 'GET',
+    url: 'https://facebook-reel-and-video-downloader.p.rapidapi.com/app/main.php',
+    params: {
+      url: videoUrl, // Use the URL parameter
+    },
+    headers: {
+      'X-RapidAPI-Key': '533e1f5225msh422684554f962a7p16536djsn4c4c6c4594ed',
+      'X-RapidAPI-Host': 'facebook-reel-and-video-downloader.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await axios.request(options);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/ytdl', async (req, res) => {
   try {
     const { url } = req.query;
