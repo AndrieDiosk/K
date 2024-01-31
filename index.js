@@ -75,7 +75,6 @@ app.get('/api/getmessage/:email', async (req, res) => {
         sender: message.from,
         subject: message.subject,
 	date: message.date,
-	id: message.id,
         message: plainTextMessage
       };
 
