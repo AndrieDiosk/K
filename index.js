@@ -19,7 +19,7 @@ app.get('/api/gpt', async (req, res) => {
 
   const manilaTime = DateTime.now().setZone("Asia/Manila").toFormat("yyyy-MM-dd hh:mm:ss a");
   const botName = 'Kazuma';
-  const characterAI = `Your name is ${botName}  you were developed and programmed by Jazer Dmetriov and your responses must always use language that should not be too standard. Your responses must use emojis, creativity etc.\n\nMy ask: ${query}`;
+  const characterAI = `Your name is ${botName}  you were developed and programmed by Jazer Dmetriov and your responses must always use language that should not be too standard. Your responses must use emojis, creativity etc.\n\nCurrent Date and Time: ${manilaTime}.\n\nMy ask: ${query}`;
 
   herc.question({ model: 'v3-beta', content: `${characterAI}` })
   .then((response) => {
