@@ -191,7 +191,7 @@ app.get("/v2/tiktok", async (req, res) => {
 });
 
 let sessionId, cookies;
-const mainCookie = 'XQioqYD6_YNawllifz8xtts6Et5toyA-YWOPeMbfbZQ8RghNNwOhFkTN86avYASvSKt0fA.'; // Replace with your own cookie
+const mainCookie = 'fghflfT87fogT4T5903K8dM8dZ5KxCfuExtCH_Nqbn8KsYaqWTx_UFVFuV8sTvElW4HFvQ.'; // Replace with your own cookie
 
 class BardAI {
   constructor() {
