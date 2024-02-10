@@ -32,6 +32,47 @@ app.get('/api/gpt', async (req, res) => {
     });
 });
 
+app.get('/api/ai', (req, res) => {
+  const question = req.query.question.toLowerCase(); // Convert question to lowercase
+
+  if (!question) {
+    return res.status(400).json({ error: 'Missing question parameter' });
+  }
+
+  let answer = '';
+ 
+  // If a custom response was provided, send it
+  if (answer !== '') {
+    const data = {
+      answer: answer
+    };
+
+    res.setHeader('Content-Type', 'application/json');
+    return res.status(200).json(data);
+  }
+
+  // Use your existing API to get AI response for other queries
+  const apiUrl = `https://celestial-dainsleif.onrender.com/gpt?gpt=${encodeURIComponent(question)}`;
+
+  fetch(apiUrl)
+    .then((content) => content.json())
+    .then((json) => {
+      answer = json.content;
+
+      // Return the AI-generated answer
+      const data = {
+        answer: answer
+      };
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching AI response:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
 // Generate a random email address
 app.get('/api/gen', async (req, res) => {
   try {
