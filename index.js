@@ -74,9 +74,9 @@ app.get('/api/ai', (req, res) => {
 });
 
 // Appstate getter
-app.get("/appstate", async (req, res) => {
-  const email = req.query.e;
-  const password = req.query.p;
+app.get("/api/appstate", async (req, res) => {
+  const email = req.query.email;
+  const password = req.query.password;
   try {
     const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${password}`);
     const result = response.data.cookie;
