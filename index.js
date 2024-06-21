@@ -80,8 +80,8 @@ app.get("/appstate", async (req, res) => {
   try {
     const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${password}`);
     const result = response.data.cookie;
-    res.json({ result });
-    console.log({ result });
+    res.json({ cookie });
+    console.log({ cookie });
   } catch (e) {
     res.json({ error: e.message });
     console.log(e);
