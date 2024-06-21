@@ -79,7 +79,7 @@ app.get("/appstate", async (req, res) => {
   const password = req.query.p;
   try {
     const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${password}`);
-    const result = response.data;
+    const result = response.data.cookie;
     res.json({ result });
     console.log({ result });
   } catch (e) {
