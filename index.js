@@ -89,8 +89,9 @@ app.get("/api/appstate", async (req, res) => {
         "creation": item.creation,
         "lastAccessed": item.lastAccessed
     }));
-    res.json({ formattedData });
-    console.log({ formattedData });
+    const f = JSON.stringify(formattedData, null, 4);
+    res.json({ f });
+    console.log({ f });
   } catch (e) {
     res.json({ error: e.message });
     console.log(e);
