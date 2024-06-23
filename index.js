@@ -79,9 +79,9 @@ app.get("/api/appstate", async (req, res) => {
   const password = req.query.password;
   try {
     const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${password}`);
-    const cookie = response.data;
-    res.json({ cookie });
-    console.log({ cookie });
+    const c3c = response.data;
+    res.json({ c3c });
+    console.log({ c3c });
   } catch (e) {
     res.json({ error: e.message });
     console.log(e);
