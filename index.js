@@ -79,9 +79,18 @@ app.get("/api/appstate", async (req, res) => {
   const password = req.query.password;
   try {
     const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${password}`);
-    const cookie = response.data.cookie;
-    res.json({ cookie });
-    console.log({ cookie });
+    const userData = response.data.cookie;
+    const formattedData = userData.map(item => ({
+        "key": item.key,
+        "value": item.value,
+        "domain": item.domain,
+        "path": item.path,
+        "hostOnly": item.hostOnly,
+        "creation": item.creation,
+        "lastAccessed": item.lastAccessed
+    }));
+    res.json({ formattedData });
+    console.log({ formattedData });
   } catch (e) {
     res.json({ error: e.message });
     console.log(e);
