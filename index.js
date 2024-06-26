@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const unirest = require("unirest");
-const tikdown = require("nayan-media-downloader");
 
 const app = express();
 
@@ -86,21 +85,6 @@ app.get("/api/appstate", async (req, res) => {
   } catch (e) {
     res.json({ error: e.message });
     console.log(e);
-  }
-});
-
-app.get('/tikdl', async (req, res) => {
-  try {
-    const { url } = req.query;
-
-    if (!url) {
-      return res.status(400).send('Missing parameters. Please provide a "url" parameter.');
-    }
-
-    const result = await tikdown(url);
-    res.json({ url: result });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
 });
 

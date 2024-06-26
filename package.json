@@ -14,7 +14,6 @@
     "express": "^4.19.2",
     "hercai": "^12.2.0",
     "luxon": "^3.4.4",
-    "nayan-media-downloader": "^2.3.9",
     "unirest": "^0.6.0"
   }
 }
