@@ -191,7 +191,7 @@ app.get('/api/ytdl', async (req, res) => {
   }
 });
 
-app.get("/api/tikdl", async (req, res) => {
+app.get("/v2/tiktok", async (req, res) => {
 			try {
 				const url = req.query.url;
 				var options = {
