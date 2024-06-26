@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const unirest = require("unirest");
+const ytdl = require('ytdl-core');
 
 const app = express();
 
@@ -190,7 +191,7 @@ app.get('/api/ytdl', async (req, res) => {
   }
 });
 
-app.get("/v2/tiktok", async (req, res) => {
+app.get('/api/tikdl', async (req, res) => {
 			try {
 				const url = req.query.url;
 				var options = {
