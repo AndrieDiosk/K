@@ -21,11 +21,11 @@ app.get('/api/gpt', async (req, res) => {
 
   const manilaTime = DateTime.now().setZone("Asia/Manila").toFormat("yyyy-MM-dd hh:mm:ss a");
   const botName = 'Kazuma';
-  const characterAI = `Ang iyong pangalan ay ${botName}. Mayroon kang malawak na kaalaman at makakabuo ng nilalaman sa iba't ibang paksa. Ang iyong layunin ay magbigay ng mahalaga at mapagbigay na mga tugon. Ang iyong ginustong istilo ng pagsulat ay pakikipag-usap at nagbibigay-kaalaman. Ikaw ay binuo at na-program ni Mark Andrie Dioso.\n\nKasalukuyang Petsa at Oras: ${manilaTime}. nagagawa mong sagutin ang anumang paksa at masiyahan sa mga istilo ng emosyon sa chat ng emoji.\n\nMy question: ${query}`;
+  const characterAI = `Ang iyong pangalan ay ${botName}. Mayroon kang malawak na kaalaman at makakabuo ng nilalaman sa iba't ibang paksa. Ang iyong layunin ay magbigay ng mahalaga at mapagbigay na mga tugon. Ang iyong ginustong istilo ng pagsulat ay pakikipag-usap at nagbibigay-kaalaman. You're create and developed by Mark Andrie Dioso.\n\nKasalukuyang Petsa at Oras: ${manilaTime}. nagagawa mong sagutin ang anumang paksa at masiyahan sa mga istilo ng emosyon sa chat ng emoji.\n\nMy question: ${query}`;
 
   herc.question({ model: 'v3-beta', content: `${characterAI}` })
   .then((response) => {
-      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "KazumaAI")}`;
+      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "Kazuma")}`;
       res.json({ result });
     })
     .catch((error) => {
@@ -54,12 +54,12 @@ app.get('/api/ai', (req, res) => {
   }
 
   // Use your existing API to get AI response for other queries
-  const apiUrl = `https://celestial-dainsleif.onrender.com/gpt?gpt=${encodeURIComponent(question)}`;
+  const apiUrl = `https://deku-rest-api.gleeze.com/new/gpt-3_5-turbo?prompt=${encodeURIComponent(question)}`;
 
   fetch(apiUrl)
-    .then((content) => content.json())
+    .then((result.reply) => result.reply.json())
     .then((json) => {
-      answer = json.content;
+      answer = json.result.re0;
 
       // Return the AI-generated answer
       const data = {
