@@ -25,7 +25,7 @@ app.get('/api/gpt', async (req, res) => {
 
   herc.question({ model: 'v3-beta', content: `${characterAI}` })
   .then((response) => {
-      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "KazumaAI")}`;
+      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("OpenAI", "Andrie")}`;
       res.json({ result });
     })
     .catch((error) => {
