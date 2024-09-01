@@ -25,7 +25,7 @@ app.get('/api/gpt', async (req, res) => {
 
   herc.question({ model: 'v3-beta', content: `${characterAI}` })
   .then((response) => {
-      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "Kazuma")}`;
+      const result = `📝 𝗞𝗔𝗭𝗨𝗠𝗔 :\n\n${response.reply.replace("Herc.ai", "KazumaAI")}`;
       res.json({ result });
     })
     .catch((error) => {
@@ -57,9 +57,9 @@ app.get('/api/ai', (req, res) => {
   const apiUrl = `https://deku-rest-api.gleeze.com/new/gpt-3_5-turbo?prompt=${encodeURIComponent(question)}`;
 
   fetch(apiUrl)
-    .then((result.reply) => result.reply.json())
+    .then((reply) => reply.json())
     .then((json) => {
-      answer = json.result.re0;
+      answer = json;
 
       // Return the AI-generated answer
       const data = {
