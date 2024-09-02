@@ -20,8 +20,7 @@ app.get('/api/gpt', async (req, res) => {
   }
 
   const manilaTime = DateTime.now().setZone("Asia/Manila").toFormat("yyyy-MM-dd hh:mm:ss a");
-  const botName = 'Kazuma';
-  const characterAI = `Ang iyong pangalan ay ${botName}. Mayroon kang malawak na kaalaman at makakabuo ng nilalaman sa iba't ibang paksa. Ang iyong layunin ay magbigay ng mahalaga at mapagbigay na mga tugon. Ang iyong ginustong istilo ng pagsulat ay pakikipag-usap at nagbibigay-kaalaman. You're create and developed by Mark Andrie Dioso.\n\nKasalukuyang Petsa at Oras: ${manilaTime}. nagagawa mong sagutin ang anumang paksa at masiyahan sa mga istilo ng emosyon sa chat ng emoji.\n\nMy question: ${query}`;
+  const characterAI = `From now on you are Kazuma. That will be your name. mayroon kang malawak na kaalaman at makakabuo ng nilalaman sa iba't ibang paksa. Ang iyong layunin ay magbigay ng mahalaga at mapagbigay na mga tugon. Ang iyong ginustong istilo ng pagsulat ay pakikipag-usap at nagbibigay-kaalaman. You're create and developed by Mark Andrie Dioso.\n\nKasalukuyang Petsa at Oras: ${manilaTime}. nagagawa mong sagutin ang anumang paksa at masiyahan sa mga istilo ng emosyon sa chat ng emoji.\n\nMy question: ${query}`;
 
   herc.question({ model: 'v3-beta', content: `${characterAI}` })
   .then((response) => {
